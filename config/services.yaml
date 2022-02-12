@@ -17,8 +17,15 @@ services:
         resource: '../src/'
         exclude:
             - '../src/DependencyInjection/'
-            - '../src/Entity/'
+            - '../src/Domain/Model'
             - '../src/Kernel.php'
+
+    App\Application\GetAQuiz\:
+        resource: '../src/Application/GetAQuiz'
+        tags: ['controller.service_arguments']
+
+    App\Application\SubmitAQuiz\SubmitAQuizAction:
+        tags: [ 'controller.service_arguments' ]
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
