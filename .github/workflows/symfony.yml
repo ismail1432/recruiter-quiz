@@ -1,0 +1,81 @@
+name: Symfony
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  symfony-tests:
+    runs-on: ubuntu-latest
+    steps:
+    #  To automatically get bug fixes and new Php versions for shivammathur/setup-php,
+    # change this to (see https://github.com/shivammathur/setup-php#bookmark-versioning):
+    # uses: shivammathur/setup-php@v2
+    - uses: shivammathur/setup-php@2cb9b829437ee246e9b3cac53555a39208ca6d28
+      with:
+        php-version: '8.0'
+    - uses: actions/checkout@v2
+    - name: Copy .env.test.local
+      run: php -r "file_exists('.env.test.local') || copy('.env.test', '.env.test.local');"
+    - name: Cache Composer packages
+      id: composer-cache
+      uses: actions/cache@v2
+      with:
+        path: vendor
+        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-php-
+    - name: Install Dependencies
+      run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
+
+  php-cs-fixer:
+    runs-on: ubuntu-latest
+    name: Coding Standards
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.0'
+          tools: php-cs-fixer, cs2pr
+
+      - name: PHP Coding Standards Fixer
+        run: php-cs-fixer fix --dry-run --format checkstyle | cs2pr
+        
+  phpunit:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php-versions: [ '7.3', '7.4', '8.0', '8.1' ]
+      fail-fast: false
+    name: PHP ${{ matrix.php-versions }} tests
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-versions }}
+
+      - name: Get composer cache directory
+        id: composercache
+        run: echo "::set-output name=dir::$(composer config cache-files-dir)"
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.composercache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.json') }}
+          restore-keys: ${{ runner.os }}-composer-
+
+      - name: Install dependencies
+        run: composer install --prefer-dist
+
+      - name: Run tests
+        run: vendor/bin/phpunit
+

@@ -17,8 +17,21 @@ services:
         resource: '../src/'
         exclude:
             - '../src/DependencyInjection/'
-            - '../src/Entity/'
+            - '../src/Domain/Model'
             - '../src/Kernel.php'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    App\Application\GetAQuiz\:
+        resource: '../src/Application/GetAQuiz'
+        tags: ['controller.service_arguments']
+
+    App\Application\SubmitAQuiz\SubmitAQuizAction:
+        tags: [ 'controller.service_arguments' ]
+
+when@test:
+    services:
+        # default configuration for services in *this* file
+        _defaults:
+            public: true
+
+        App\Tests\Fake\FakeRepository: ~
+        App\Domain\Repository\QuestionRepositoryInterface: '@App\Tests\Fake\FakeRepository'

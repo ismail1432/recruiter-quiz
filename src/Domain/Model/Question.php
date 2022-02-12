@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Domain\Model;
+
+final class Question
+{
+    private QuestionId $id;
+    private string $question;
+    private array $choices;
+    private int $answer;
+
+    private function __construct()
+    {
+    }
+
+    public static function create(QuestionId $id, string $question, array $choices, int $answer): self
+    {
+        $self = new self();
+        $self->id = $id;
+        $self->question = $question;
+        $self->choices = $choices;
+        $self->answer = $answer;
+
+        return $self;
+    }
+
+    public function getAnswer(): int
+    {
+        return $this->answer;
+    }
+
+    public function getAnswerAsString(): string
+    {
+        return $this->choices[$this->answer];
+    }
+
+    public function getChoices(): array
+    {
+        return $this->choices;
+    }
+
+    public function getQuestion(): string
+    {
+        return $this->question;
+    }
+
+    public function getId(): QuestionId
+    {
+        return $this->id;
+    }
+}
