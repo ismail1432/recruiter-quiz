@@ -38,7 +38,7 @@ final class SubmitAQuizAction
 
                 return new Response($this->environment->render('quiz/result.html.twig', [
                     'result' => $result,
-                    'score' => $result->getScore(),
+                    'score' => $result->getScore()->getValue(),
                 ]));
             } catch (InvalidSubmittedDataException) {
                 throw new BadRequestHttpException();
