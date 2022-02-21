@@ -13,5 +13,4 @@ phpstan: ## Run phpstan level 8
 test-phpcs: ## Run coding standard tests
 	./vendor/bin/php-cs-fixer --diff --dry-run --using-cache=no -v fix src
 
-
 .PHONY: clean-code test test-code test-qa test-phpcs test-psalm test-phpmd
