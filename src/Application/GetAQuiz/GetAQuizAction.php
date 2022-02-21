@@ -2,7 +2,8 @@
 
 namespace App\Application\GetAQuiz;
 
-use App\Infrastructure\Symfony\QuizForm;
+use App\Domain\Query\QueryHandlerInterface;
+use App\Infrastructure\Symfony\Form\QuizForm;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,11 +14,13 @@ final class GetAQuizAction
 {
     private FormFactoryInterface $formFactory;
     private Environment $environment;
+    private QueryHandlerInterface $queryBus;
 
-    public function __construct(FormFactoryInterface $formFactory, Environment $environment)
+    public function __construct(FormFactoryInterface $formFactory, Environment $environment, QueryHandlerInterface $queryBus)
     {
         $this->formFactory = $formFactory;
         $this->environment = $environment;
+        $this->queryBus = $queryBus;
     }
 
     #[Route('/', name: 'get_quiz', methods: ['get'])]

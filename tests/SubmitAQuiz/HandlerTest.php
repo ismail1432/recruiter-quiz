@@ -131,7 +131,7 @@ class HandlerTest extends TestCase
             $data[$submittedAnswer->getQuestionId()->toString()] = $submittedAnswer->getValue();
         }
 
-        $score = $result->handle(new Input($data));
+        $score = $result(new Input($data));
 
         self::assertEquals($expectedScore, $score->getScore()->getValue());
     }

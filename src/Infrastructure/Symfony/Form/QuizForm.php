@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Symfony;
+namespace App\Infrastructure\Symfony\Form;
 
 use App\Domain\Model\Question;
 use App\Domain\Repository\QuestionRepositoryInterface;
