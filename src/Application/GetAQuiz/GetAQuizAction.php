@@ -14,13 +14,11 @@ final class GetAQuizAction
 {
     private FormFactoryInterface $formFactory;
     private Environment $environment;
-    private QueryHandlerInterface $queryBus;
 
     public function __construct(FormFactoryInterface $formFactory, Environment $environment, QueryHandlerInterface $queryBus)
     {
         $this->formFactory = $formFactory;
         $this->environment = $environment;
-        $this->queryBus = $queryBus;
     }
 
     #[Route('/', name: 'get_quiz', methods: ['get'])]

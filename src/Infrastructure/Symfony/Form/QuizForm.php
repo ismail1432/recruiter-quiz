@@ -43,12 +43,13 @@ class QuizForm extends AbstractType
         foreach ($questions as $question) {
             $builder
                 ->add($question->getId()->toString(), ChoiceType::class, [
+                    'attr' => ['class' =>'select-css'],
                     'choices' => $this->buildChoiceElement($question),
                     'label' => $question->getQuestion(),
                 ]);
         }
 
-        $builder->add('Submit', SubmitType::class);
+        $builder->add('Submit', SubmitType::class, ['attr' => ['class' =>'button-submit']]);
     }
 
     private function buildChoiceElement(Question $question): array
