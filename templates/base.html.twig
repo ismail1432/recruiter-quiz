@@ -1,16 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <style>
-            .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-            .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-        </style>
-
         <meta charset="UTF-8">
         <title>{% block title %}The Tech Recruiter Quizz!{% endblock %}</title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+        <link href="{{ asset("assets/styles/app.css") }}" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
     </head>
     <body>
+        <div class="example-wrapper">
         {% block body %}{% endblock %}
+            <hr>
+        <footer>
+            <div class="ftr-left">
+                <a class="btn" href="https://www.smaine.me" target="_blank">Who Am I?</a><br>
+                <a class="btn" href="https://twitter.com/SmaineDev" target="_blank"> Follow me <i class="fab fa-twitter" style="color: #00acee;"></i></a><br>
+                <a class="btn" href="https://www.linkedin.com/in/smainemilianni" target="_blank">Connect to me <i class="fab fa-linkedin-in" style="color:#0e76a8;"></i></a><br>
+            </div>
+        <div class="ftr-right">
+            <a class="btn" href="https://github.com/ismail1432/recruiter-quiz" target="_blank">Check the source code <i class="fa-brands fa-github"></i></a><br>
+            <a class="btn" href="https://smaine-milianni.medium.com/" target="_blank">Read Me <i class="fa-brands fa-medium"></i></a><br>
+            <a class="btn" href="mailto:contact@smaine.me" target="_blank">Contact Me <i class="fa-solid fa-envelope"></i></a><br>
+        </div>
+        </footer>
+        </div>
     </body>
 </html>

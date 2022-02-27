@@ -3,8 +3,13 @@
 namespace App\Application\SubmitAQuiz;
 
 use App\Domain\Exception\InvalidSubmittedDataException;
+use App\Domain\Model\Result;
+use App\Domain\Model\Score;
+use App\Domain\Query\QueryBusInterface;
+use App\Domain\Query\QueryHandlerInterface;
 use App\Domain\SubmitAQuiz\Handler;
-use App\Infrastructure\Symfony\QuizForm;
+use App\Domain\SubmitAQuiz\Output;
+use App\Infrastructure\Symfony\Form\QuizForm;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,13 +20,13 @@ use Twig\Environment;
 
 final class SubmitAQuizAction
 {
-    private Handler $handler;
+    private QueryBusInterface $queryBus;
     private FormFactoryInterface $formFactory;
     private Environment $environment;
 
-    public function __construct(Handler $handler, FormFactoryInterface $formFactory, Environment $environment)
+    public function __construct(QueryBusInterface $queryBus, FormFactoryInterface $formFactory, Environment $environment)
     {
-        $this->handler = $handler;
+        $this->queryBus = $queryBus;
         $this->formFactory = $formFactory;
         $this->environment = $environment;
     }
@@ -34,11 +39,11 @@ final class SubmitAQuizAction
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $result = $this->handler->handle(new Input($form->getData()));
+                $output = $this->dispatch(new Input($form->getData()));
 
                 return new Response($this->environment->render('quiz/result.html.twig', [
-                    'result' => $result,
-                    'score' => $result->getScore()->getValue(),
+                    'corrections' => $output->getCorrections(),
+                    'score' => $output->getScore()
                 ]));
             } catch (InvalidSubmittedDataException) {
                 throw new BadRequestHttpException();
@@ -46,5 +51,10 @@ final class SubmitAQuizAction
         }
 
         throw new NotFoundHttpException();
+    }
+
+    private function dispatch(Input $input): Output
+    {
+        return $this->queryBus->handle($input);
     }
 }

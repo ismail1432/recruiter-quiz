@@ -2,7 +2,6 @@
 
 namespace App\Tests;
 
-use App\Domain\Model\Question;
 use App\Domain\Model\QuestionId;
 use App\Domain\Model\SubmittedAnswer;
 use App\Domain\Repository\QuestionRepositoryInterface;

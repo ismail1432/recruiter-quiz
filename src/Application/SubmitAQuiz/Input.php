@@ -2,7 +2,9 @@
 
 namespace App\Application\SubmitAQuiz;
 
-final class Input
+use App\Domain\Query\QueryInterface;
+
+final class Input implements QueryInterface
 {
     /**
      * @var array<string, int>]

@@ -1,18 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-
-    <div class="example-wrapper">
-        <h1>Check your result and the answers!</h1>
+    <h1>Check your result and the correction! ✅</h1>
         <h3>You have {{ score }}% of good answers</h3>
-
-        <ul>
-            {% for correction in result.corrections %}
-                <li>{{ correction.isCorrect ? '✅' : '❌' }} Question: {{ correction.question }}</li>
-                <li>Your answer: {{ correction.submittedAnswer ?? '🕳️' }}</li>
-                <li>The response: {{ correction.response }}</li>
-            {% endfor %}
-        </ul>
-
-    </div>
+            <div>
+                {% for correction in corrections %}
+                <p>
+                    {{ correction.isCorrect ? '✅' : '❌' }} Question: {{ correction.question }}<br>
+                    Your answer: {{ correction.submittedAnswer ?? '🕳️' }}<br>
+                    The response: {{ correction.response }}<br>
+                    {% if correction.link is not null %}
+                    {% set book = random(constant('App\\Infrastructure\\Emoji\\Book::ALL')) %}
+                    <a href="{{ correction.link }}" target="_blank">Learn more... {{ book}} '👀'</a><br>
+                    {% endif %}
+                </p>
+                {% endfor %}
+            </div>
+        <a data-size="large" class="twitter-share-button" href="https://twitter.com/intent/tweet?text=I just pass a tech recruiter quiz at&url={{ absolute_url(path('get_quiz')) }} @SmaineDev">share on twitter</a>
+    <script>
+        window.twttr = (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0],
+                t = window.twttr || {};
+            if (d.getElementById(id)) return t;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "https://platform.twitter.com/widgets.js";
+            fjs.parentNode.insertBefore(js, fjs);
+            t._e = [];
+            t.ready = function(f) {
+                t._e.push(f);
+            };
+            return t;
+        }(document, "script", "twitter-wjs"));
+    </script>
 {% endblock %}
