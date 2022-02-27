@@ -8,18 +8,20 @@ final class Question
     private string $question;
     private array $choices;
     private int $answer;
+    private ?string $link = null;
 
     private function __construct()
     {
     }
 
-    public static function create(QuestionId $id, string $question, array $choices, int $answer): self
+    public static function create(QuestionId $id, string $question, array $choices, int $answer, ?string $link = null): self
     {
         $self = new self();
         $self->id = $id;
         $self->question = $question;
         $self->choices = $choices;
         $self->answer = $answer;
+        $self->link = $link;
 
         return $self;
     }
@@ -47,5 +49,10 @@ final class Question
     public function getId(): QuestionId
     {
         return $this->id;
+    }
+
+    public function getLink(): ?string
+    {
+        return $this->link;
     }
 }

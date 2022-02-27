@@ -4,6 +4,7 @@ namespace App\Infrastructure\Symfony\Form;
 
 use App\Domain\Model\Question;
 use App\Domain\Repository\QuestionRepositoryInterface;
+use App\Infrastructure\Emoji\Random;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -17,22 +18,6 @@ class QuizForm extends AbstractType
     {
         $this->questionRepository = $questionRepository;
     }
-
-    private const EMOJIS = [
-        '❓',
-        '🍇',
-        '🍄',
-        '💡',
-        '🧱',
-        '🧵',
-        '💿',
-        '📒',
-        '🖋️',
-        '🧽',
-        '💫',
-        '🌕',
-        '🔥',
-    ];
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -49,14 +34,25 @@ class QuizForm extends AbstractType
                 ]);
         }
 
-        $builder->add('Submit', SubmitType::class, ['attr' => ['class' =>'button-submit']]);
+        $builder->add(
+            'Submit',
+            SubmitType::class,
+            [
+                'attr' => [
+                    'class' =>'button-submit',
+                    ],
+            ]
+        );
     }
 
     private function buildChoiceElement(Question $question): array
     {
-        $choices = $this->shuffleChoices($question->getChoices());
-
-        return array_merge([self::EMOJIS[array_rand(self::EMOJIS)] => 42], $choices);
+        return array_merge(
+            [Random::ALL[array_rand(Random::ALL)] => 42],
+            $this->shuffleChoices(
+                $question->getChoices()
+            )
+        );
     }
 
     private function shuffleChoices(array $choices): array

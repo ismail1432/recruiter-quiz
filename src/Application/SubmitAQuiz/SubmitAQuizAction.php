@@ -8,6 +8,7 @@ use App\Domain\Model\Score;
 use App\Domain\Query\QueryBusInterface;
 use App\Domain\Query\QueryHandlerInterface;
 use App\Domain\SubmitAQuiz\Handler;
+use App\Domain\SubmitAQuiz\Output;
 use App\Infrastructure\Symfony\Form\QuizForm;
 use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -38,11 +39,11 @@ final class SubmitAQuizAction
 
         if ($form->isSubmitted() && $form->isValid()) {
             try {
-                $result = $this->dispatch(new Input($form->getData()));
+                $output = $this->dispatch(new Input($form->getData()));
 
                 return new Response($this->environment->render('quiz/result.html.twig', [
-                    'result' => $result,
-                    'score' => $result->getScore()->getValue(),
+                    'corrections' => $output->getCorrections(),
+                    'score' => $output->getScore()
                 ]));
             } catch (InvalidSubmittedDataException) {
                 throw new BadRequestHttpException();
@@ -52,7 +53,7 @@ final class SubmitAQuizAction
         throw new NotFoundHttpException();
     }
 
-    private function dispatch(Input $input): Result
+    private function dispatch(Input $input): Output
     {
         return $this->queryBus->handle($input);
     }

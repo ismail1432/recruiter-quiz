@@ -6,6 +6,7 @@ final class Correction
 {
     private string $question;
     private ?string $submittedAnswer;
+    private ?string $link;
     private string $response;
     private bool $isCorrect;
 
@@ -21,6 +22,7 @@ final class Correction
         $self->response = $question->getAnswerAsString();
         $self->submittedAnswer = $question->getChoices()[$answer->getValue()] ?? null;
         $self->isCorrect = $answer->isCorrect($question);
+        $self->link = $question->getLink();
 
         return $self;
     }
@@ -43,5 +45,10 @@ final class Correction
     public function getResponse(): string
     {
         return $this->response;
+    }
+
+    public function getLink(): ?string
+    {
+        return $this->link;
     }
 }

@@ -22,48 +22,34 @@ final class Handler implements QueryHandlerInterface
         $this->questionRepository = $questionRepository;
     }
 
-    public function __invoke(QueryInterface $input): Result
+    public function __invoke(QueryInterface $input): Output
     {
-        $totalAnswers = $this->questionRepository->getTotalQuestion();
+        $totalAnswers = count($input->getData());
         $result = [];
         $corrections = [];
 
-        /** @var SubmittedAnswer $submittedAnswer */
-        foreach ($this->buildSubmittedAnswers($input) as $submittedAnswer) {
-            $question = $this->questionRepository->getById($submittedAnswer->getQuestionId());
+        foreach ($input->getData() as $key => $value) {
+            try {
+                $submittedAnswer = SubmittedAnswer::create(QuestionId::fromString($key), $value);
+                $question = $this->questionRepository->getById($submittedAnswer->getQuestionId());
 
-            $corrections[] = $correction = Correction::create($question, $submittedAnswer);
-            $result[] = $correction->isCorrect();
+                $corrections[] = $correction = Correction::create($question, $submittedAnswer);
+                $result[] = $correction->isCorrect();
+            } catch (\Throwable) {
+                throw InvalidSubmittedDataException::invalidSubmittedData();
+            }
         }
 
         $goodAnswers = count(array_filter($result));
 
-        return Result::create(
+        return Output::createFromResult(Result::create(
             $corrections,
             Score::create($this->toPercentage($goodAnswers, $totalAnswers))
-        );
+        ));
     }
 
     private function toPercentage(int $goodAnswers, int $totalAnswer): int
     {
         return (int) number_format(($goodAnswers / $totalAnswer) * 100);
-    }
-
-    /**
-     * @return SubmittedAnswer[]
-     */
-    private function buildSubmittedAnswers(Input $input): array
-    {
-        $submittedAnswers = [];
-
-        try {
-            foreach ($input->getData() as $key => $value) {
-                $submittedAnswers[] = SubmittedAnswer::create(QuestionId::fromString($key), $value);
-            }
-        } catch (\Throwable $e) {
-            throw InvalidSubmittedDataException::invalidSubmittedData();
-        }
-
-        return $submittedAnswers;
     }
 }

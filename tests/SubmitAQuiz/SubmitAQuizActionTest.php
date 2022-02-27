@@ -2,9 +2,6 @@
 
 namespace App\Tests\SubmitAQuiz;
 
-use App\Domain\Model\Question;
-use App\Domain\Model\QuestionId;
-use App\Domain\Repository\QuestionRepositoryInterface;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 final class SubmitAQuizActionTest extends WebTestCase
@@ -63,7 +60,7 @@ final class SubmitAQuizActionTest extends WebTestCase
         $client->submit($form);
 
         $this->assertResponseIsSuccessful();
-        $this->assertSelectorTextContains('h1', 'Check your result and the answers!');
+        $this->assertSelectorTextContains('h1', 'Check your result and the correction! ✅');
         $this->assertSelectorTextContains('h3', "You have {$score} of good answers");
     }
 

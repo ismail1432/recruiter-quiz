@@ -3,7 +3,6 @@
 namespace App\Tests\SubmitAQuiz;
 
 use App\Application\SubmitAQuiz\Input;
-use App\Domain\Model\Question;
 use App\Domain\Model\QuestionId;
 use App\Domain\Model\SubmittedAnswer;
 use App\Domain\Repository\QuestionRepositoryInterface;
@@ -13,7 +12,6 @@ use PHPUnit\Framework\TestCase;
 
 class HandlerTest extends TestCase
 {
-
     public function calculProvider(): iterable
     {
         yield '0 %' => [
@@ -131,8 +129,8 @@ class HandlerTest extends TestCase
             $data[$submittedAnswer->getQuestionId()->toString()] = $submittedAnswer->getValue();
         }
 
-        $score = $result(new Input($data));
+        $output = $result(new Input($data));
 
-        self::assertEquals($expectedScore, $score->getScore()->getValue());
+        self::assertEquals($expectedScore, $output->getScore());
     }
 }
