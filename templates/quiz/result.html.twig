@@ -2,7 +2,8 @@
 
 {% block body %}
     <h1>Check your result and the correction! ✅</h1>
-        <h3>You have {{ score }}% of good answers</h3>
+        <h3>Congratulations for your participation 🎉, You have {{ score }}% of good answers 🏆</h3>
+        <h4>Check the correction 👇</h4>
             <div>
                 {% for correction in corrections %}
                 <p>
@@ -10,13 +11,14 @@
                     Your answer: {{ correction.submittedAnswer ?? '🕳️' }}<br>
                     The response: {{ correction.response }}<br>
                     {% if correction.link is not null %}
-                    {% set book = random(constant('App\\Infrastructure\\Emoji\\Book::ALL')) %}
-                    <a href="{{ correction.link }}" target="_blank">Learn more... {{ book}} '👀'</a><br>
+                    {% set book = random(constant('App\\Domain\\Emoji\\Book::ALL')) %}
+                    <a href="{{ correction.link }}" target="_blank">💡 Learn more about the answer... {{ book}} 👀</a><br>
                     {% endif %}
                 </p>
                 {% endfor %}
             </div>
-        <a data-size="large" class="twitter-share-button" href="https://twitter.com/intent/tweet?text=I just pass a tech recruiter quiz at&url={{ absolute_url(path('get_quiz')) }} @SmaineDev">share on twitter</a>
+        <a data-size="large" class="twitter-share-button" href="https://twitter.com/intent/tweet?text=I just pass a tech recruiter quiz, you can try it at&url={{ absolute_url(path('get_quiz')) }} cc @SmaineDev">Tweet this</a>
+    <h3>Click <a style="color:red" href="{{ path('get_quiz') }}">here</a> to retry</h3>
     <script>
         window.twttr = (function(d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0],

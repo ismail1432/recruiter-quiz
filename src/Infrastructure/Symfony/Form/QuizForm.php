@@ -2,9 +2,9 @@
 
 namespace App\Infrastructure\Symfony\Form;
 
+use App\Domain\Emoji\Random;
 use App\Domain\Model\Question;
 use App\Domain\Repository\QuestionRepositoryInterface;
-use App\Infrastructure\Emoji\Random;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;

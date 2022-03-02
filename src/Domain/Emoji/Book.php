@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Infrastructure\Emoji;
+namespace App\Domain\Emoji;
 
 final class Book
 {
