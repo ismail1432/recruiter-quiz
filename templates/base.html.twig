@@ -2,13 +2,14 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}The Tech Recruiter Quizz!{% endblock %}</title>
+        <title>{% block title %}The Tech Recruiter Quiz!{% endblock %}</title>
+        <link href="http://fonts.cdnfonts.com/css/jelly-anika" rel="stylesheet">
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
         <link href="{{ asset("assets/styles/app.css") }}" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
     </head>
     <body>
-        <div class="example-wrapper">
+        <div class="wrapper">
         {% block body %}{% endblock %}
             <hr>
         <footer>

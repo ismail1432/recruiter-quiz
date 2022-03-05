@@ -2,8 +2,10 @@
 
 {% block body %}
     <h1>Check your result and the correction! ✅</h1>
-        <h3>Congratulations for your participation 🎉, You have {{ score }}% of good answers 🏆</h3>
-        <h4>Check the correction 👇</h4>
+        <h3>Congratulations for your participation 🎉,<br> You have {{ score }}% of good answers 🏆</h3>
+    <hr>
+
+    <h4>Check the correction 👇</h4>
             <div>
                 {% for correction in corrections %}
                 <p>
