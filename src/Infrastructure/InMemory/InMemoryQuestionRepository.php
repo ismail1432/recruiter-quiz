@@ -14,21 +14,21 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
             'question' => 'Java is an abbreviation for Javascript?',
             'choices' => ['True', 'False'],
             'answer' => 1,
-            'link' => 'https://en.wikipedia.org/wiki/Java_(programming_language)'
+            'link' => 'https://en.wikipedia.org/wiki/Java_(programming_language)',
         ],
         [
             'id' => '909b4178-f5a9-44eb-926a-2a0a09870baf',
             'question' => 'Symfony is a framework written in Ruby?',
             'choices' => ['True', 'False'],
             'answer' => 1,
-            'link' => 'https://youtu.be/iPXgoD52Mwc'
+            'link' => 'https://youtu.be/iPXgoD52Mwc',
         ],
         [
             'id' => '2f87a26c-c22f-4869-befc-b75582787c74',
             'question' => 'The CSS is used for querying a database',
             'choices' => ['True', 'False'],
             'answer' => 1,
-            'link' => 'https://en.wikipedia.org/wiki/CSS'
+            'link' => 'https://en.wikipedia.org/wiki/CSS',
         ],
         [
             'id' => 'c768382d-169e-4ad0-848a-6af40233782f',
@@ -42,7 +42,7 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
             'question' => 'Which technology is used to versioning code',
             'choices' => ['Docker', 'Git', 'AWS'],
             'answer' => 1,
-            'link' => 'https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control'
+            'link' => 'https://git-scm.com/book/en/v2/Getting-Started-About-Version-Control',
         ],
         [
             'id' => 'effbc17d-0e2e-46f1-ba7b-ab0095b6d1b8',
@@ -79,7 +79,7 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
                 'A JQuery library',
             ],
             'answer' => 0,
-            'link' => 'https://reactjs.org/'
+            'link' => 'https://reactjs.org/',
         ],
         [
             'id' => 'e6aaf3b7-6c4b-482e-a53d-1ac8bc4c46ca',
@@ -138,13 +138,13 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
     ];
 
     /**
-     * @var array{'id': string, "question": string, "choices": array, "answer": int}
+     * @var array<array{id: string, question: string, choices: array<string>, answer: int, link?: string}>
      */
     private array $questions;
 
-    public function __construct(array $questions = [])
+    public function __construct()
     {
-        $this->questions = [] === $questions ? self::QUESTIONS : $questions;
+        $this->questions = self::QUESTIONS;
     }
 
     /**
@@ -181,5 +181,15 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
     public function getTotalQuestion(): int
     {
         return count($this->getAll());
+    }
+
+    /**
+     * @param array<array{id: string, question: string, choices: array<string>, answer: int, link?: string}> $questions
+     */
+    public function withQuestions(array $questions): self
+    {
+        $this->questions = $questions;
+
+        return $this;
     }
 }

@@ -28,10 +28,11 @@ class QuizForm extends AbstractType
         foreach ($questions as $question) {
             $builder
                 ->add($question->getId()->toString(), ChoiceType::class, [
-                    'attr' => ['class' =>'select-css'],
+                    'attr' => ['class' => 'select-css'],
                     'choices' => $this->buildChoiceElement($question),
                     'label' => $question->getQuestion(),
-                ]);
+                ])
+            ;
         }
 
         $builder->add(
@@ -39,12 +40,15 @@ class QuizForm extends AbstractType
             SubmitType::class,
             [
                 'attr' => [
-                    'class' =>'button-submit',
+                    'class' => 'button-submit',
                     ],
             ]
         );
     }
 
+    /**
+     * @return array<string, int>
+     */
     private function buildChoiceElement(Question $question): array
     {
         return array_merge(
@@ -55,6 +59,11 @@ class QuizForm extends AbstractType
         );
     }
 
+    /**
+     * @param array<string> $choices
+     *
+     * @return array<string, int>
+     */
     private function shuffleChoices(array $choices): array
     {
         $keys = array_keys($choices);

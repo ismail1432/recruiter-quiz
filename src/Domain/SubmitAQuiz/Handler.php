@@ -9,7 +9,6 @@ use App\Domain\Model\QuestionId;
 use App\Domain\Model\Result;
 use App\Domain\Model\Score;
 use App\Domain\Model\SubmittedAnswer;
-use App\Domain\Query\QueryInterface;
 use App\Domain\Query\QueryHandlerInterface;
 use App\Domain\Repository\QuestionRepositoryInterface;
 
@@ -22,7 +21,7 @@ final class Handler implements QueryHandlerInterface
         $this->questionRepository = $questionRepository;
     }
 
-    public function __invoke(QueryInterface $input): Output
+    public function __invoke(Input $input): Output
     {
         $totalAnswers = count($input->getData());
         $result = [];

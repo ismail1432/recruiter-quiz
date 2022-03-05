@@ -6,6 +6,7 @@ final class Question
 {
     private QuestionId $id;
     private string $question;
+    /** @var array<string> */
     private array $choices;
     private int $answer;
     private ?string $link = null;
@@ -14,6 +15,9 @@ final class Question
     {
     }
 
+    /**
+     * @param array<string> $choices
+     */
     public static function create(QuestionId $id, string $question, array $choices, int $answer, ?string $link = null): self
     {
         $self = new self();
@@ -36,6 +40,9 @@ final class Question
         return $this->choices[$this->answer];
     }
 
+    /**
+     * @return array<string>
+     */
     public function getChoices(): array
     {
         return $this->choices;

@@ -11,46 +11,47 @@ final class SubmitAQuizActionTest extends WebTestCase
         yield '100%' => [
             [
                 'quiz_form[111]' => 3, // Spring
-                'quiz_form[222]'=>1, // Git
-                'quiz_form[333]'=>1 // Google
+                'quiz_form[222]' => 1, // Git
+                'quiz_form[333]' => 1, // Google
             ],
-            '100%'
+            '100%',
         ];
 
         yield '66%' => [
             [
                 'quiz_form[111]' => 3, // Spring
-                'quiz_form[222]'=>1, // Git
-                'quiz_form[333]'=>2 // Google
+                'quiz_form[222]' => 1, // Git
+                'quiz_form[333]' => 2, // Google
             ],
-            '67%'
+            '67%',
         ];
 
         yield '34%' => [
             [
                 'quiz_form[111]' => 3, // Spring
-                'quiz_form[222]'=>2, // Git
-                'quiz_form[333]'=>2 // Google
+                'quiz_form[222]' => 2, // Git
+                'quiz_form[333]' => 2, // Google
             ],
-            '33%'
+            '33%',
         ];
 
         yield '0%' => [
             [
                 'quiz_form[111]' => 2, // Spring
-                'quiz_form[222]'=>2, // Git
-                'quiz_form[333]'=>2 // Google
+                'quiz_form[222]' => 2, // Git
+                'quiz_form[333]' => 2, // Google
             ],
-            '0%'
+            '0%',
         ];
     }
+
     /**
      * @dataProvider formAnswers
      */
     public function testItSubmitWithSuccess(array $formAnswers, string $score): void
     {
         $client = $this->createClient();
-            $crawler = $client->request('GET', '/')
+        $crawler = $client->request('GET', '/')
         ;
 
         $form = $crawler->selectButton('Submit')->form();
@@ -76,6 +77,5 @@ final class SubmitAQuizActionTest extends WebTestCase
 
         $client->submit($form);
         $this->assertResponseStatusCodeSame(404);
-
     }
 }

@@ -13,6 +13,7 @@ final class Result
     {
     }
 
+    /** @param Correction[] $corrections */
     public static function create(array $corrections, Score $score): self
     {
         $self = new self();
@@ -23,6 +24,9 @@ final class Result
         return $self;
     }
 
+    /**
+     * @return Correction[]
+     */
     public function getCorrections(): array
     {
         return $this->corrections;

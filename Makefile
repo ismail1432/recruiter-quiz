@@ -3,14 +3,18 @@ help: ## Show this message
 
 phpcs: ## Run PHP CS Fixer
 	./vendor/bin/php-cs-fixer fix src
+	./vendor/bin/php-cs-fixer fix tests
 
 test: ## Run code tests
 	./vendor/bin/phpunit --testdox
 
-phpstan: ## Run phpstan level 8
-	./vendor/bin/phpstan analyse src --level=5
+phpstan:
+	./vendor/bin/phpstan analyse src --level=9
 
 test-phpcs: ## Run coding standard tests
 	./vendor/bin/php-cs-fixer --diff --dry-run --using-cache=no -v fix src
 
-.PHONY: clean-code test test-code test-qa test-phpcs test-psalm test-phpmd
+all: ## Run all DX tools
+all: phpcs phpstan test
+
+.PHONY: test test-qa test-phpcs phpstan
