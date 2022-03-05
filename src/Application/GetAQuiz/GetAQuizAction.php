@@ -26,7 +26,7 @@ final class GetAQuizAction
     {
         $form = $this->formFactory->create(QuizForm::class);
 
-        return new Response($this->environment->render('quiz/quiz_form.html.twig', [
+        return new Response($this->environment->render('quiz/quiz.html.twig', [
             'form' => $form->createView(),
         ]));
     }
