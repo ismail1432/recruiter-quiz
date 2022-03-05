@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\Repository;
 
 use App\Domain\Model\QuestionId;
 use App\Domain\Model\SubmittedAnswer;
@@ -45,32 +45,32 @@ class QuestionRepositoryTest extends KernelTestCase
             [
                 'question' => 'Java is an abbreviation for Javascript?',
                 'choices' => ['True', 'False'],
-                'answer' => 'False'
+                'answer' => 'False',
             ],
             [
                 'question' => 'Symfony is a framework written in Ruby?',
                 'choices' => ['True', 'False'],
-                'answer' => 'False'
+                'answer' => 'False',
             ],
             [
                 'question' => 'The CSS is used for querying a database',
                 'choices' => ['True', 'False'],
-                'answer' => 'False'
+                'answer' => 'False',
             ],
             [
                 'question' => 'Who is the intruder among this list?',
                 'choices' => ['Laravel', 'Yii', 'Symfony', 'Spring'],
-                'answer' => 'Spring'
+                'answer' => 'Spring',
             ],
             [
                 'question' => 'Which technology is used to versioning code',
                 'choices' => ['Docker', 'Git', 'AWS'],
-                'answer' => 'Git'
+                'answer' => 'Git',
             ],
             [
                 'question' => 'Which company created Angular?',
                 'choices' => ['Facebook', 'Google', 'Apple', 'Amazon'],
-                'answer' => 'Google'
+                'answer' => 'Google',
             ],
             [
                 'question' => 'What is REST?',
@@ -78,14 +78,14 @@ class QuestionRepositoryTest extends KernelTestCase
                     'A software architectural style created to guide web services',
                     'A security protocol between web services',
                     'A coding style',
-                    'A design pattern'
+                    'A design pattern',
                 ],
-                'answer' => 'A software architectural style created to guide web services'
+                'answer' => 'A software architectural style created to guide web services',
             ],
             [
                 'question' => 'Do ALL developers like babyfoot?',
                 'choices' => ['True', 'False'],
-                'answer' => 'False'
+                'answer' => 'False',
             ],
             [
                 'question' => 'What is React?',
@@ -93,39 +93,39 @@ class QuestionRepositoryTest extends KernelTestCase
                     'A javascript framework',
                     'The evolution of JQuery',
                     'A java framework',
-                    'A JQuery library'
+                    'A JQuery library',
                 ],
-                'answer' => 'A javascript framework'
+                'answer' => 'A javascript framework',
             ],
             [
                 'question' => 'Can you code in PHP without internet connection?',
                 'choices' => ['True', 'False'],
-                'answer' => 'True'
+                'answer' => 'True',
             ],
             [
                 'question' => 'Which language use the sign "$" to create a variable?',
                 'choices' => ['Javascript', 'PHP', 'Java', 'Ruby', 'Cobol', 'C'],
-                'answer' => 'PHP'
+                'answer' => 'PHP',
             ],
             [
                 'question' => 'What is a DevOps?',
                 'choices' => ['A set of practices', 'A specific job', 'A developer that release very often'],
-                'answer' => 'A set of practices'
+                'answer' => 'A set of practices',
             ],
             [
                 'question' => 'Wordpress is no code tool',
                 'choices' => ['True', 'False'],
-                'answer' => 'False'
+                'answer' => 'False',
             ],
             [
                 'question' => 'Who is the intruder in the following items?',
                 'choices' => ['Singleton', 'Observer', 'Api', 'Strategy', 'Factory'],
-                'answer' => 'Api'
+                'answer' => 'Api',
             ],
             [
                 'question' => 'Which PHP version does not exist?',
                 'choices' => ['5.4', '6.0', '7.4', '8.0', 'all of these version exists'],
-                'answer' => '6.0'
+                'answer' => '6.0',
             ],
             [
                 'question' => 'Which statement is true?',
@@ -134,12 +134,12 @@ class QuestionRepositoryTest extends KernelTestCase
                     'HTML is a dynamic language',
                     'HTML is for rendering element and CSS is for adding style',
                 ],
-                'answer' => 'HTML is for rendering element and CSS is for adding style'
+                'answer' => 'HTML is for rendering element and CSS is for adding style',
             ],
             [
                 'question' => 'Who is the intruder?',
                 'choices' => ['Python', 'Ruby', 'Java', 'PHP', 'Swift'],
-                'answer' => 'Swift'
+                'answer' => 'Swift',
             ],
         ];
     }

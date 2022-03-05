@@ -2,10 +2,14 @@
 
 namespace App\Domain\SubmitAQuiz;
 
+use App\Domain\Model\Correction;
 use App\Domain\Model\Result;
 
 final class Output
 {
+    /**
+     * @var Correction[]
+     */
     private array $corrections;
     private int $score;
 
@@ -23,6 +27,9 @@ final class Output
         return $self;
     }
 
+    /**
+     * @return Correction[]
+     */
     public function getCorrections(): array
     {
         return $this->corrections;

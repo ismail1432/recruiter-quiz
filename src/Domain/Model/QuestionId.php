@@ -6,7 +6,7 @@ final class QuestionId
 {
     private string $value;
 
-    public static function fromString(string $value)
+    public static function fromString(string $value): self
     {
         $self = new self();
         $self->value = $value;

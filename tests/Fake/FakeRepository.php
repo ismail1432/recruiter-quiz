@@ -9,7 +9,6 @@ use App\Infrastructure\InMemory\InMemoryQuestionRepository;
 
 class FakeRepository implements QuestionRepositoryInterface
 {
-
     private QuestionRepositoryInterface $decorateQuestionRepository;
 
     public static $questions = [
@@ -35,7 +34,7 @@ class FakeRepository implements QuestionRepositoryInterface
 
     public function __construct()
     {
-        $this->decorateQuestionRepository = new InMemoryQuestionRepository(self::$questions);
+        $this->decorateQuestionRepository = (new InMemoryQuestionRepository())->withQuestions(self::$questions);
     }
 
     public function getAll(): array

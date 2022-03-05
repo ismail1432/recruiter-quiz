@@ -15,12 +15,12 @@ class HandlerTest extends TestCase
     public function calculProvider(): iterable
     {
         yield '0 %' => [
-            new InMemoryQuestionRepository([
-                ['id' => "1", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
-                ['id' => "2", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
-                ['id' => "3", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
-                ['id' => "4", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
-                ['id' => "5", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
+            (new InMemoryQuestionRepository())->withQuestions([
+                ['id' => '1', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
+                ['id' => '2', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
+                ['id' => '3', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
+                ['id' => '4', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
+                ['id' => '5', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
             ]),
             [
                 SubmittedAnswer::create(QuestionId::fromString('1'), 1),
@@ -29,16 +29,16 @@ class HandlerTest extends TestCase
                 SubmittedAnswer::create(QuestionId::fromString('4'), 1),
                 SubmittedAnswer::create(QuestionId::fromString('5'), 1),
             ],
-            0
+            0,
         ];
 
         yield '20 %' => [
-            new InMemoryQuestionRepository([
-                ['id' => "1", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
-                ['id' => "2", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
-                ['id' => "3", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
-                ['id' => "4", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
-                ['id' => "5", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
+            (new InMemoryQuestionRepository())->withQuestions([
+                ['id' => '1', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
+                ['id' => '2', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
+                ['id' => '3', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
+                ['id' => '4', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
+                ['id' => '5', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
             ]),
             [
                 SubmittedAnswer::create(QuestionId::fromString('1'), 1),
@@ -47,15 +47,15 @@ class HandlerTest extends TestCase
                 SubmittedAnswer::create(QuestionId::fromString('4'), 1),
                 SubmittedAnswer::create(QuestionId::fromString('5'), 1),
             ],
-            20
+            20,
         ];
 
         yield '25 %' => [
-            new InMemoryQuestionRepository([
-                ['id' => "1", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
-                ['id' => "2", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
-                ['id' => "3", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
-                ['id' => "4", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
+            (new InMemoryQuestionRepository())->withQuestions([
+                ['id' => '1', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
+                ['id' => '2', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
+                ['id' => '3', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
+                ['id' => '4', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
             ]),
             [
                 SubmittedAnswer::create(QuestionId::fromString('1'), 1),
@@ -63,15 +63,15 @@ class HandlerTest extends TestCase
                 SubmittedAnswer::create(QuestionId::fromString('3'), 1),
                 SubmittedAnswer::create(QuestionId::fromString('4'), 1),
             ],
-            25
+            25,
         ];
 
         yield '50 %' => [
-            new InMemoryQuestionRepository([
-                ['id' => "1", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
-                ['id' => "2", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
-                ['id' => "3", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
-                ['id' => "4", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
+            (new InMemoryQuestionRepository())->withQuestions([
+                ['id' => '1', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
+                ['id' => '2', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
+                ['id' => '3', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
+                ['id' => '4', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
             ]),
             [
                 SubmittedAnswer::create(QuestionId::fromString('1'), 1),
@@ -79,15 +79,15 @@ class HandlerTest extends TestCase
                 SubmittedAnswer::create(QuestionId::fromString('3'), 1),
                 SubmittedAnswer::create(QuestionId::fromString('4'), 1),
             ],
-            50
+            50,
         ];
 
         yield '75 %' => [
-            new InMemoryQuestionRepository([
-                ['id' => "1", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
-                ['id' => "2", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
-                ['id' => "3", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
-                ['id' => "4", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
+            (new InMemoryQuestionRepository())->withQuestions([
+                ['id' => '1', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 0],
+                ['id' => '2', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
+                ['id' => '3', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
+                ['id' => '4', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
             ]),
             [
                 SubmittedAnswer::create(QuestionId::fromString('1'), 1),
@@ -95,15 +95,15 @@ class HandlerTest extends TestCase
                 SubmittedAnswer::create(QuestionId::fromString('3'), 1),
                 SubmittedAnswer::create(QuestionId::fromString('4'), 1),
             ],
-            75
+            75,
         ];
 
         yield '100 %' => [
-            new InMemoryQuestionRepository([
-                ['id' => "1", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
-                ['id' => "2", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
-                ['id' => "3", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
-                ['id' => "4", 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
+            (new InMemoryQuestionRepository())->withQuestions([
+                ['id' => '1', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
+                ['id' => '2', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
+                ['id' => '3', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
+                ['id' => '4', 'question' => 'foo', 'choices' => ['True', 'False'], 'answer' => 1],
             ]),
             [
                 SubmittedAnswer::create(QuestionId::fromString('1'), 1),
@@ -111,9 +111,8 @@ class HandlerTest extends TestCase
                 SubmittedAnswer::create(QuestionId::fromString('3'), 1),
                 SubmittedAnswer::create(QuestionId::fromString('4'), 1),
             ],
-            100
+            100,
         ];
-
     }
 
     /**

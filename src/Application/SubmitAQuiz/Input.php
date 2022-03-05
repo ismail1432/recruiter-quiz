@@ -7,7 +7,7 @@ use App\Domain\Query\QueryInterface;
 final class Input implements QueryInterface
 {
     /**
-     * @var array<string, int>]
+     * @var array<string, int>
      */
     private array $data;
 
@@ -20,7 +20,7 @@ final class Input implements QueryInterface
     }
 
     /**
-     * @return  array<string, int>
+     * @return array<string, int>
      */
     public function getData(): array
     {
