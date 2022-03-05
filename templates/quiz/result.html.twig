@@ -9,10 +9,10 @@
                 <p>
                     {{ correction.isCorrect ? '✅' : '❌' }} Question: {{ correction.question }}<br>
                     Your answer: {{ correction.submittedAnswer ?? '🕳️' }}<br>
-                    The response: {{ correction.response }}<br>
+                    Correction: {{ correction.response }}<br>
                     {% if correction.link is not null %}
                     {% set book = random(constant('App\\Domain\\Emoji\\Book::ALL')) %}
-                    <a href="{{ correction.link }}" target="_blank">💡 Learn more about the answer... {{ book}} 👀</a><br>
+                    <a href="{{ correction.link }}" target="_blank">💡 Learn more... {{ book}} 👀</a><br>
                     {% endif %}
                 </p>
                 {% endfor %}
