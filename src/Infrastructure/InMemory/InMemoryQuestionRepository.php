@@ -135,6 +135,18 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
             'choices' => ['Python', 'Ruby', 'Java', 'PHP', 'Swift'],
             'answer' => 4,
         ],
+        [
+            'id' => '43433d7c-1934-4294-bacd-b013aae65de7',
+            'question' => 'Github is an open source platform for hosting source code.',
+            'choices' => ['True', 'False'],
+            'answer' => 1,
+        ],
+        [
+            'id' => 'e48a2892-a2fd-4a00-a80e-fe41721abdb8',
+            'question' => 'Who is the intruder?',
+            'choices' => ['DRY', 'KISS', 'SCRUM', 'YAGNI'],
+            'answer' => 2,
+        ],
     ];
 
     /**
