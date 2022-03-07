@@ -5,6 +5,7 @@ namespace App\Tests\Repository;
 use App\Domain\Model\QuestionId;
 use App\Domain\Model\SubmittedAnswer;
 use App\Domain\Repository\QuestionRepositoryInterface;
+use App\Infrastructure\InMemory\InMemoryQuestionRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class QuestionRepositoryTest extends KernelTestCase
@@ -13,7 +14,7 @@ class QuestionRepositoryTest extends KernelTestCase
 
     public function setUp(): void
     {
-        $this->questionRepository = self::getContainer()->get(QuestionRepositoryInterface::class);
+        $this->questionRepository = new InMemoryQuestionRepository();
     }
 
     public function testGetAllHaveGoodAnswers(): void
@@ -32,7 +33,6 @@ class QuestionRepositoryTest extends KernelTestCase
                     }
                     $submitted = SubmittedAnswer::create(QuestionId::fromString('42'), $submittedValue);
                     self::assertTrue($submitted->isCorrect($question), sprintf("Invalid answer '%s' for question '%s'", $answer['answer'], $question->getQuestion()));
-
                     continue 2;
                 }
             }
@@ -83,7 +83,7 @@ class QuestionRepositoryTest extends KernelTestCase
                 'answer' => 'A software architectural style created to guide web services',
             ],
             [
-                'question' => 'Do ALL developers like babyfoot?',
+                'question' => 'Do all developers like babyfoot?',
                 'choices' => ['True', 'False'],
                 'answer' => 'False',
             ],
@@ -108,14 +108,14 @@ class QuestionRepositoryTest extends KernelTestCase
                 'answer' => 'PHP',
             ],
             [
-                'question' => 'What is a DevOps?',
+                'question' => 'What is DevOps?',
                 'choices' => ['A set of practices', 'A specific job', 'A developer that release very often'],
                 'answer' => 'A set of practices',
             ],
             [
                 'question' => 'Wordpress is no code tool',
                 'choices' => ['True', 'False'],
-                'answer' => 'False',
+                'answer' => 'True',
             ],
             [
                 'question' => 'Who is the intruder in the following items?',

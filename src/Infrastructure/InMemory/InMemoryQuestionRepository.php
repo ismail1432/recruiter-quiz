@@ -65,7 +65,7 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
         ],
         [
             'id' => 'c8f3e157-d39c-498f-962e-12307d4ff5fb',
-            'question' => 'Do ALL developers like babyfoot?',
+            'question' => 'Do all developers like babyfoot?',
             'choices' => ['True', 'False'],
             'answer' => 1,
         ],
@@ -95,7 +95,7 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
         ],
         [
             'id' => '9a2076ec-ffa2-44c4-a909-b95549d1639c',
-            'question' => 'What is a DevOps?',
+            'question' => 'What is DevOps?',
             'choices' => ['A set of practices', 'A specific job', 'A developer that release very often'],
             'answer' => 0,
             'link' => 'https://aws.amazon.com/fr/devops/what-is-devops/#:~:text=DevOps%20is%20the%20combination%20of,development%20and%20infrastructure%20management%20processes.',
@@ -104,7 +104,7 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
             'id' => 'aa2eca53-aea8-494f-92f2-c66b25611bb4',
             'question' => 'Wordpress is no code tool',
             'choices' => ['True', 'False'],
-            'answer' => 1,
+            'answer' => 0,
         ],
         [
             'id' => 'fc6a0dcc-9eae-4855-9cba-cdac15524cb4',
