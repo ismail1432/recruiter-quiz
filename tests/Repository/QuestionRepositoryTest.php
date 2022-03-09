@@ -113,11 +113,6 @@ class QuestionRepositoryTest extends KernelTestCase
                 'answer' => 'A set of practices',
             ],
             [
-                'question' => 'Wordpress is no code tool',
-                'choices' => ['True', 'False'],
-                'answer' => 'True',
-            ],
-            [
                 'question' => 'Who is the intruder in the following items?',
                 'choices' => ['Singleton', 'Observer', 'Api', 'Strategy', 'Factory'],
                 'answer' => 'Api',
