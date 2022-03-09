@@ -101,12 +101,6 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
             'link' => 'https://aws.amazon.com/fr/devops/what-is-devops/#:~:text=DevOps%20is%20the%20combination%20of,development%20and%20infrastructure%20management%20processes.',
         ],
         [
-            'id' => 'aa2eca53-aea8-494f-92f2-c66b25611bb4',
-            'question' => 'Wordpress is no code tool',
-            'choices' => ['True', 'False'],
-            'answer' => 0,
-        ],
-        [
             'id' => 'fc6a0dcc-9eae-4855-9cba-cdac15524cb4',
             'question' => 'Who is the intruder in the following items?',
             'choices' => ['Singleton', 'Observer', 'Api', 'Strategy', 'Factory'],
