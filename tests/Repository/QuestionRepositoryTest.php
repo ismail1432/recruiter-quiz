@@ -132,7 +132,7 @@ class QuestionRepositoryTest extends KernelTestCase
                 'answer' => 'HTML is for rendering element and CSS is for adding style',
             ],
             [
-                'question' => 'Who is the intruder?',
+                'question' => 'Guess who is the intruder?',
                 'choices' => ['Python', 'Ruby', 'Java', 'PHP', 'Swift'],
                 'answer' => 'Swift',
             ],
