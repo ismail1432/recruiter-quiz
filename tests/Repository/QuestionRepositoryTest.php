@@ -136,6 +136,16 @@ class QuestionRepositoryTest extends KernelTestCase
                 'choices' => ['Python', 'Ruby', 'Java', 'PHP', 'Swift'],
                 'answer' => 'Swift',
             ],
+            [
+                'question' => 'Github is an open source platform for hosting source code.',
+                'choices' => ['True', 'False'],
+                'answer' => 'False',
+            ],
+            [
+                'question' => 'Who is the intruder?',
+                'choices' => ['DRY', 'KISS', 'SCRUM', 'YAGNI'],
+                'answer' => 'SCRUM',
+            ],
         ];
     }
 }
