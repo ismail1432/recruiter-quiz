@@ -125,7 +125,7 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
         ],
         [
             'id' => '94b7f199-b750-48ba-af92-5224a336979f',
-            'question' => 'Who is the intruder?',
+            'question' => 'Guess who is the intruder?',
             'choices' => ['Python', 'Ruby', 'Java', 'PHP', 'Swift'],
             'answer' => 4,
         ],
