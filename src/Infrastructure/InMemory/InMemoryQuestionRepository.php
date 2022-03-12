@@ -134,17 +134,33 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
             'question' => 'Github is an open source platform for hosting source code.',
             'choices' => ['True', 'False'],
             'answer' => 1,
+            'author' => 'Tarekdj',
+            'author_link' => 'https://github.com/tarekdj',
+            'new' => true,
         ],
         [
             'id' => 'e48a2892-a2fd-4a00-a80e-fe41721abdb8',
             'question' => 'Who is the intruder?',
             'choices' => ['DRY', 'KISS', 'SCRUM', 'YAGNI'],
             'answer' => 2,
+            'author' => 'Tarekdj',
+            'author_link' => 'https://github.com/tarekdj',
+            'new' => true,
+        ],
+        [
+            'id' => '74749c36-efb6-4276-b56a-319bb09ab8bf',
+            'question' => 'What does QA stand for?',
+            'choices' => ['Quality Assurance', 'Quick Assurance', 'Quality Acknowledge', 'Question & Answer'],
+            'answer' => 0,
+            'link' => 'https://en.wikipedia.org/wiki/Quality_assurance',
+            'author' => 'Jeremie',
+            'author_link' => 'https://www.linkedin.com/in/jeremievalentin',
+            'new' => true,
         ],
     ];
 
     /**
-     * @var array<array{id: string, question: string, choices: array<string>, answer: int, link?: string}>
+     * @var array<array{id: string, question: string, choices: array<string>, answer: int, link?: string, author?: string, author_link?: string, new?: bool}>
      */
     private array $questions;
 
@@ -160,7 +176,7 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
     {
         foreach ($this->questions as $question) {
             if ($questionId->toString() === $question['id']) {
-                return Question::create($questionId, $question['question'], $question['choices'], $question['answer'], $question['link'] ?? null);
+                return $this->createFromArray($questionId, $question);
             }
         }
         throw new \RuntimeException(sprintf('Question %s was not found', $questionId));
@@ -178,7 +194,7 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
                 throw new \InvalidArgumentException(sprintf('id %s already exits', $question['id']));
             }
 
-            $questions[$question['id']] = Question::create(QuestionId::fromString($question['id']), $question['question'], $question['choices'], $question['answer'], $question['link'] ?? null);
+            $questions[$question['id']] = $this->createFromArray(QuestionId::fromString($question['id']), $question);
         }
 
         return $questions;
@@ -190,12 +206,29 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
     }
 
     /**
-     * @param array<array{id: string, question: string, choices: array<string>, answer: int, link?: string}> $questions
+     * @param array<array{id: string, question: string, choices: array<string>, answer: int, link?: string, author?: string, author_link?: string, new?: bool}> $questions
      */
     public function withQuestions(array $questions): self
     {
         $this->questions = $questions;
 
         return $this;
+    }
+
+    /**
+     * @param array{id: string, question: string, choices: array<string>, answer: int, link?: string, author?: string, author_link?: string, new?: bool} $data
+     */
+    private function createFromArray(QuestionId $questionId, array $data): Question
+    {
+        return Question::create(
+            $questionId,
+                $data['question'],
+                $data['choices'],
+                $data['answer'],
+                $data['link'] ?? null,
+                $data['author'] ?? null,
+                $data['author_link'] ?? null,
+            $data['new'] ?? false
+            );
     }
 }

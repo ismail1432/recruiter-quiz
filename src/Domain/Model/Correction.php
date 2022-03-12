@@ -9,6 +9,8 @@ final class Correction
     private ?string $link;
     private string $response;
     private bool $isCorrect;
+    private ?string $author;
+    private ?string $authorLink;
 
     private function __construct()
     {
@@ -23,6 +25,8 @@ final class Correction
         $self->submittedAnswer = $question->getChoices()[$answer->getValue()] ?? null;
         $self->isCorrect = $answer->isCorrect($question);
         $self->link = $question->getLink();
+        $self->author = $question->getAuthor();
+        $self->authorLink = $question->getAuthorLink();
 
         return $self;
     }
@@ -50,5 +54,15 @@ final class Correction
     public function getLink(): ?string
     {
         return $this->link;
+    }
+
+    public function getAuthor(): ?string
+    {
+        return $this->author;
+    }
+
+    public function getAuthorLink(): ?string
+    {
+        return $this->authorLink;
     }
 }
