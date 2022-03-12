@@ -21,7 +21,7 @@ final class Question
     /**
      * @param array<string> $choices
      */
-    public static function create(QuestionId $id, string $question, array $choices, int $answer, ?string $link, ?string $author, ?string $authorLink, bool $isNew = false): self
+    public static function create(QuestionId $id, string $question, array $choices, int $answer, ?string $link, ?string $author, ?string $authorLink, ?\DateTimeInterface $createdAt = null): self
     {
         $self = new self();
         $self->id = $id;
@@ -31,7 +31,7 @@ final class Question
         $self->link = $link;
         $self->author = $author;
         $self->authorLink = $authorLink;
-        $self->isNew = $isNew;
+        $self->isNew = null !== $createdAt && $createdAt >= new \DateTime('15 days ago');
 
         return $self;
     }
