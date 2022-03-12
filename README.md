@@ -17,7 +17,10 @@ The only requirement to add a question is to update this constant with a new ele
     'question' => 'Question content', // Should be in english
     'choices' => 'Array of available choices', // Multichoices is not supported yet
     'answer' => 'the key of the good answer in the choices array', 
-    'link' => 'documentation or link to detail the good answer'
+    'link' => 'documentation or link to detail the good answer',
+    'author' => 'your name',
+    'author_link' => 'a link to your profile/blog...',
+    'new' => true,
 ]
 // Example
 [
@@ -25,7 +28,10 @@ The only requirement to add a question is to update this constant with a new ele
     'question' => 'Java is an abbreviation for Javascript?',
     'choices' => ['True', 'False'],
     'answer' => 1,
-    'link' => 'https://en.wikipedia.org/wiki/Java_(programming_language)'
+    'link' => 'https://en.wikipedia.org/wiki/Java_(programming_language)',
+    'author' => 'SmaineDev',
+    'author_link' => 'https://twitter.com/SmaineDev',
+    'new' => true,
 ]
 ```
 
