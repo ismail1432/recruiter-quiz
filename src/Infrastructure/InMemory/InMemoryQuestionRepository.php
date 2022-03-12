@@ -136,7 +136,7 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
             'answer' => 1,
             'author' => 'Tarekdj',
             'author_link' => 'https://github.com/tarekdj',
-            'new' => true,
+            'created_at' => '2022-03-12',
         ],
         [
             'id' => 'e48a2892-a2fd-4a00-a80e-fe41721abdb8',
@@ -145,7 +145,7 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
             'answer' => 2,
             'author' => 'Tarekdj',
             'author_link' => 'https://github.com/tarekdj',
-            'new' => true,
+            'created_at' => '2022-03-12',
         ],
         [
             'id' => '74749c36-efb6-4276-b56a-319bb09ab8bf',
@@ -155,12 +155,12 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
             'link' => 'https://en.wikipedia.org/wiki/Quality_assurance',
             'author' => 'Jeremie',
             'author_link' => 'https://www.linkedin.com/in/jeremievalentin',
-            'new' => true,
+            'created_at' => '2022-03-12',
         ],
     ];
 
     /**
-     * @var array<array{id: string, question: string, choices: array<string>, answer: int, link?: string, author?: string, author_link?: string, new?: bool}>
+     * @var array<array{id: string, question: string, choices: array<string>, answer: int, link?: string, author?: string, author_link?: string, created_at?: string}>
      */
     private array $questions;
 
@@ -206,7 +206,7 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
     }
 
     /**
-     * @param array<array{id: string, question: string, choices: array<string>, answer: int, link?: string, author?: string, author_link?: string, new?: bool}> $questions
+     * @param array<array{id: string, question: string, choices: array<string>, answer: int, link?: string, author?: string, author_link?: string, created_at?: string}> $questions
      */
     public function withQuestions(array $questions): self
     {
@@ -216,19 +216,24 @@ class InMemoryQuestionRepository implements QuestionRepositoryInterface
     }
 
     /**
-     * @param array{id: string, question: string, choices: array<string>, answer: int, link?: string, author?: string, author_link?: string, new?: bool} $data
+     * @param array{id: string, question: string, choices: array<string>, answer: int, link?: string, author?: string, author_link?: string, created_at?: string} $data
      */
     private function createFromArray(QuestionId $questionId, array $data): Question
     {
+        $createdAt = $data['created_at'] ?? null;
+        if (null !== $createdAt) {
+            $createdAt = new \DateTime($createdAt);
+        }
+
         return Question::create(
             $questionId,
                 $data['question'],
                 $data['choices'],
                 $data['answer'],
-                $data['link'] ?? null,
-                $data['author'] ?? null,
-                $data['author_link'] ?? null,
-            $data['new'] ?? false
+            $data['link'] ?? null,
+            $data['author'] ?? null,
+            $data['author_link'] ?? null,
+            $createdAt
             );
     }
 }
