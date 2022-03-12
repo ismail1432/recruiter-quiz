@@ -10,6 +10,9 @@ final class Question
     private array $choices;
     private int $answer;
     private ?string $link = null;
+    private ?string $author = null;
+    private ?string $authorLink = null;
+    private bool $isNew = false;
 
     private function __construct()
     {
@@ -18,7 +21,7 @@ final class Question
     /**
      * @param array<string> $choices
      */
-    public static function create(QuestionId $id, string $question, array $choices, int $answer, ?string $link = null): self
+    public static function create(QuestionId $id, string $question, array $choices, int $answer, ?string $link, ?string $author, ?string $authorLink, bool $isNew = false): self
     {
         $self = new self();
         $self->id = $id;
@@ -26,6 +29,9 @@ final class Question
         $self->choices = $choices;
         $self->answer = $answer;
         $self->link = $link;
+        $self->author = $author;
+        $self->authorLink = $authorLink;
+        $self->isNew = $isNew;
 
         return $self;
     }
@@ -61,5 +67,20 @@ final class Question
     public function getLink(): ?string
     {
         return $this->link;
+    }
+
+    public function getAuthor(): ?string
+    {
+        return $this->author;
+    }
+
+    public function getAuthorLink(): ?string
+    {
+        return $this->authorLink;
+    }
+
+    public function isNew(): bool
+    {
+        return $this->isNew;
     }
 }

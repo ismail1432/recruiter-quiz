@@ -30,7 +30,7 @@ class QuizForm extends AbstractType
                 ->add($question->getId()->toString(), ChoiceType::class, [
                     'attr' => ['class' => 'select-css'],
                     'choices' => $this->buildChoiceElement($question),
-                    'label' => $question->getQuestion(),
+                    'label' => $this->getLabel($question),
                 ])
             ;
         }
@@ -74,5 +74,10 @@ class QuizForm extends AbstractType
         }
 
         return array_flip($random);
+    }
+
+    private function getLabel(Question $question): string
+    {
+        return sprintf('%s %s', $question->isNew() ? '🆕' : '', $question->getQuestion());
     }
 }

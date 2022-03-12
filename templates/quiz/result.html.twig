@@ -16,6 +16,11 @@
                     {% set book = random(constant('App\\Domain\\Emoji\\Book::ALL')) %}
                     <a href="{{ correction.link }}" target="_blank">💡 Learn more... {{ book}} 👀</a><br>
                     {% endif %}
+                    {% if correction.author is not null and correction.authorLink is not null %}
+                        <a href="{{ correction.authorLink }}" target="_blank">🗣 {{ correction.author }} 👈</a><br>
+                    {% elseif correction.author is not null %}
+                        🗣 {{ correction.author }}<br>
+                    {% endif %}
                 </p>
                 {% endfor %}
             </div>
